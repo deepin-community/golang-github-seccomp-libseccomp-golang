@@ -1,5 +1,4 @@
-# uscan(1) configuration file.
-version=3
-
- https://github.com/seccomp/libseccomp-golang/releases \
- .*/archive/v?(\d[\d\.]+)\.tar\.gz
+version=4
+opts="filenamemangle=s%(?:.*?)?v?(@ANY_VERSION@@ARCHIVE_EXT@)%@PACKAGE@-$1%" \
+  https://github.com/seccomp/libseccomp-golang/tags \
+  .*/v?@ANY_VERSION@\.tar\.gz debian

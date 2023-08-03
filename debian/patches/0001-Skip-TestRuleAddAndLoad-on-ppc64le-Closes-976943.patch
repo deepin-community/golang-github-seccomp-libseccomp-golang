@@ -1,0 +1,30 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Tue, 14 Jun 2022 03:30:34 +0800
+Subject: Skip TestRuleAddAndLoad on ppc64le (Closes: #976943)
+
+---
+ seccomp_test.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/seccomp_test.go b/seccomp_test.go
+index c65dbf0..408b673 100644
+--- a/seccomp_test.go
++++ b/seccomp_test.go
+@@ -6,6 +6,7 @@ import (
+ 	"fmt"
+ 	"os"
+ 	"os/exec"
++	"runtime"
+ 	"strings"
+ 	"syscall"
+ 	"testing"
+@@ -579,6 +580,9 @@ func subprocessAddRuleErrors(t *testing.T) {
+ }
+ 
+ func TestRuleAddAndLoad(t *testing.T) {
++	if runtime.GOARCH == "ppc64le" {
++		t.Skip("https://github.com/seccomp/libseccomp-golang/issues/61")
++	}
+ 	execInSubprocess(t, subprocessRuleAddAndLoad)
+ }
+ 

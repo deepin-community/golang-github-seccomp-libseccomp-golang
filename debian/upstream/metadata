@@ -1,0 +1,6 @@
+---
+Bug-Database: https://github.com/seccomp/libseccomp-golang/issues
+Bug-Submit: https://github.com/seccomp/libseccomp-golang/issues/new
+Repository: https://github.com/seccomp/libseccomp-golang.git
+Repository-Browse: https://github.com/seccomp/libseccomp-golang
+Security-Contact: https://github.com/seccomp/libseccomp-golang/tree/HEAD/SECURITY.md
