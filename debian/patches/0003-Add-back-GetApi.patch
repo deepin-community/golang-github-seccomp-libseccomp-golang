@@ -1,0 +1,24 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Tue, 14 Jun 2022 03:36:14 +0800
+Subject: Add back GetApi
+
+TODO: removed it when 0008-seccomp-0.9.1.patch is dropped in runc.
+---
+ seccomp.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/seccomp.go b/seccomp.go
+index c234067..e6de2c3 100644
+--- a/seccomp.go
++++ b/seccomp.go
+@@ -445,6 +445,10 @@ func GetAPI() (uint, error) {
+ 	return getAPI()
+ }
+ 
++func GetApi() (uint, error) {
++	return getAPI()
++}
++
+ // SetAPI forcibly sets the API level. General use of this function is strongly
+ // discouraged.
+ // Returns an error if the API level could not be set. An error is always
