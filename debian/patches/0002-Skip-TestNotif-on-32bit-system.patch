@@ -1,0 +1,30 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Tue, 14 Jun 2022 03:34:52 +0800
+Subject: Skip TestNotif on 32bit system
+
+---
+ seccomp_test.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/seccomp_test.go b/seccomp_test.go
+index 408b673..171bc23 100644
+--- a/seccomp_test.go
++++ b/seccomp_test.go
+@@ -4,6 +4,7 @@ package seccomp
+ 
+ import (
+ 	"fmt"
++	"math/bits"
+ 	"os"
+ 	"os/exec"
+ 	"runtime"
+@@ -801,6 +802,9 @@ func notifHandler(ch chan error, fd ScmpFd, tests []notifTest) {
+ }
+ 
+ func TestNotif(t *testing.T) {
++	if bits.UintSize == 32 {
++		t.Skip("not working on 32bit system")
++	}
+ 	execInSubprocess(t, subprocessNotif)
+ }
+ 
